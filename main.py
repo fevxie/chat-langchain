@@ -3,6 +3,7 @@ import logging
 import pickle
 from pathlib import Path
 from typing import Optional
+import os
 
 from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect
 from fastapi.templating import Jinja2Templates
@@ -76,5 +77,8 @@ async def websocket_endpoint(websocket: WebSocket):
 
 if __name__ == "__main__":
     import uvicorn
-
+    #
+    # os.environ["http_proxy"] = "http://127.0.0.1:1087"
+    # os.environ["https_proxy"] = "http://127.0.0.1:1087"
+    # os.environ["ALL_PROXY"] = "http://127.0.0.1:1087"
     uvicorn.run(app, host="0.0.0.0", port=9000)
